@@ -1,0 +1,48 @@
+hr(style='margin-top: 50px;')
+.footer(style='text-align: center;')
+  p
+    copyright SG 2016 (Made with Love using NodeJS)
+script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+script(src='//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js')
+script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')
+script(src='//maps.googleapis.com/maps/api/js?key=AIzaSyDq_ZWQyclUTGk0xn9RruLVKuOwcvU9yRc&libraries=places')
+| //
+script.
+  //   var todotext = $('#username').val();
+  //   var location = $('#locationget').val();
+  //   var duetime = $('#password').val();
+  //   console.log(todotext);
+  //   console.log(location);
+  //   console.log(duetime);
+  //   $("#sumbit").click(function(){
+  //   $.post("/api/todos", ,function(data, status){
+  //   console.log(data,status);
+  //   alert("Data: " + data + "\\\\\nStatus: " + status);
+  //   });
+  //   });
+  //
+
+script.
+  $('#password').timepicker({
+  timeFormat: 'h mm p',
+  interval: 60,
+  minTime: '1:00am',
+  maxTime: '11:00pm',
+  defaultTime: '11',
+  startTime: '10:00',
+  dynamic: false,
+  dropdown: false,
+  scrollbar: true
+  });
+  var searchBox = new google.maps.places.SearchBox(document.getElementById('locationget'));
+  function getLocation() {
+  if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+  x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+  }
+  function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
+  }
