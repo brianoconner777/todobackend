@@ -5,6 +5,11 @@
   "properties": {},
   "validations": [],
   "relations": {
+    "Todo":{
+      "type": "hasMany",
+      "model":"Todo",
+      "foreignKey":"todoid"
+    },
     "accessTokens": {
       "type": "hasMany",
       "model": "accessToken",
