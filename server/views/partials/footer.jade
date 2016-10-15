@@ -21,7 +21,48 @@ script.
   //   });
   //   });
   //
+script.
+  $(document).ready(function()
+  {
+       //check event
+        $(document).on('change', '.checkbox', function() {
+          if(this.checked) {
+                var id = this.id;
+                console.log(id);
+            }
+        });
+     $.get("/api/todos",function(status)
+     {
+      for(var i=0;i<status.length;i++)
+      {
+        var duetime = status[i].duetime;
+        var location = status[i].location;
+        var todotext = status[i].todotext;
+        var check = status[i].completed;
+        console.log(check);
+        if(check==false)
+        {
+          $("#post_data").append("<span id='span_"+i+"'><input type='checkbox' id='"+i+"'/><b>Duetime</b> :"+duetime+", <b>Location</b> : "+location+", <b>TodoText</b> : "+todotext+"</span> <br>");
+        }
+        
+      }
+     });
 
+   });
+  $("#sumbit").click(function()
+  {
+    var todotext = $('#username').val();
+    var location = $('#locationget').val();
+    var duetime = $('#password').val();
+    var data = {"duetime":duetime,"location":location,"todotext":todotext};
+    $.post("/api/todos",data,function(status)
+    {
+      var duetime = status.duetime;
+      var location = status.location;
+      var todotext = status.todotext;
+      $("#post_data").append("<b>Duetime</b> :"+duetime+", <b>Location</b> : "+location+", <b>TodoText</b> : "+todotext+" <br>");
+    });
+  });
 script.
   $('#password').timepicker({
   timeFormat: 'h mm p',
